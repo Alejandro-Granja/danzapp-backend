@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/api/danzas";
+const API = "/api/danzas";  // misma-origin, evita CORS
 const form = document.getElementById("formDanza");
 const tbody = document.getElementById("tbody");
 let editId = null;

@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/api/danzas";
+const API = "/api/danzas";  // misma-origin, evita CORS
 
 async function cargarCatalogo() {
   const res = await fetch(API);
