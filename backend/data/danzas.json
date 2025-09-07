@@ -1,12 +1,152 @@
 [
   {
-    "id": "seed-1",
+    "id": "d1",
+    "nombre": "Mapalé",
+    "region": "Caribe",
+    "descripcion": "Ritmo enérgico con raíces africanas, de pasos rápidos y percusión intensa.",
+    "origen": "Costa Caribe; legado afrodescendiente en faenas de pesca.",
+    "imagenUrl": "assets/img/mapale.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=6b7U6LwF3Sc",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d2",
     "nombre": "Currulao",
     "region": "Pacífico",
-    "descripcion": "Danza afrodescendiente con marimba y tambores.",
-    "origen": "Herencia africana del litoral Pacífico.",
-    "imagenUrl": "",
+    "descripcion": "Danza emblemática del litoral Pacífico, marcada por marimba, cununos y guasá.",
+    "origen": "Comunidades afro del Pacífico colombiano.",
+    "imagenUrl": "assets/img/currulao.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=0K9yqQ3b8iA",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d3",
+    "nombre": "Cumbia",
+    "region": "Caribe",
+    "descripcion": "Símbolo musical y dancístico de Colombia; faldas amplias y velas en escena.",
+    "origen": "Mestizaje indígena, africano y español en la ribera del Magdalena.",
+    "imagenUrl": "assets/img/cumbia.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=q8zHYYbN2bw",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d4",
+    "nombre": "Joropo",
+    "region": "Llanos",
+    "descripcion": "Zapateo y coleo al ritmo de arpa, cuatro y maracas; baile llanero por excelencia.",
+    "origen": "Llanos Orientales compartidos con Venezuela.",
+    "imagenUrl": "assets/img/joropo.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=2mA3g4k0l2I",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d5",
+    "nombre": "Bambuco",
+    "region": "Andina",
+    "descripcion": "Danza elegante de parejas, con pañuelo y giros; símbolo andino.",
+    "origen": "Cordillera andina; fuerte presencia en festivales folclóricos.",
+    "imagenUrl": "assets/img/bambuco.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=8t9m3T8IYnc",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d6",
+    "nombre": "Sanjuanero",
+    "region": "Andina",
+    "descripcion": "Baile de fiesta tolimense, coreografiado con figuras tradicionales.",
+    "origen": "Fiestas de San Juan en el Tolima y Huila.",
+    "imagenUrl": "assets/img/sanjuanero.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=3x2l3tK8bWk",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d7",
+    "nombre": "Porro",
+    "region": "Caribe",
+    "descripcion": "Aire bailable de banda y cumbiamba; alegre y festivo.",
+    "origen": "Sabanas de Sucre y Córdoba.",
+    "imagenUrl": "assets/img/porro.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=5g4c2zQyqOA",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d8",
+    "nombre": "Bullerengue",
+    "region": "Caribe",
+    "descripcion": "Canto-danza de tambor liderado por mujeres; patrimonial en Atlántico y Bolívar.",
+    "origen": "Comunidades afro e indígenas de la costa Caribe.",
+    "imagenUrl": "assets/img/bullerengue.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=O0e1G6g2r1Q",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d9",
+    "nombre": "Torbellino",
+    "region": "Andina",
+    "descripcion": "Baile campesino de compás ternario; parejas giran con pañuelos.",
+    "origen": "Boyacá, Cundinamarca y Santander.",
+    "imagenUrl": "assets/img/torbellino.jpg",
     "videoUrl": "",
-    "fechaRegistro": "2024-09-01T00:00:00.000Z"
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d10",
+    "nombre": "Chirimía",
+    "region": "Pacífico",
+    "descripcion": "Fiesta callejera con clarinetes y tambores; baile colectivo.",
+    "origen": "Litoral Pacífico (Nariño y Chocó).",
+    "imagenUrl": "assets/img/chirimia.jpg",
+    "videoUrl": "",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d11",
+    "nombre": "Guaneña",
+    "region": "Andina",
+    "descripcion": "Aire nariñense de pasos ágiles y vestuario colorido.",
+    "origen": "Pasto y el altiplano nariñense.",
+    "imagenUrl": "assets/img/guanena.jpg",
+    "videoUrl": "",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d12",
+    "nombre": "Yuruparí",
+    "region": "Amazonía",
+    "descripcion": "Danza ritual asociada a mitos y ceremonias amazónicas.",
+    "origen": "Pueblos indígenas del Amazonas colombiano.",
+    "imagenUrl": "assets/img/yurupari.jpg",
+    "videoUrl": "",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d13",
+    "nombre": "Garabato",
+    "region": "Caribe",
+    "descripcion": "Comparsa tradicional del Carnaval de Barranquilla con bastones y máscaras.",
+    "origen": "Barranquilla y su carnaval patrimonial.",
+    "imagenUrl": "assets/img/garabato.jpg",
+    "videoUrl": "https://www.youtube.com/watch?v=HqYwUo7U5m0",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d14",
+    "nombre": "Conga (Carnaval)",
+    "region": "Caribe",
+    "descripcion": "Paso marcial y contagioso de comparsa; bombos y tambores guían la calle.",
+    "origen": "Carnaval de la Costa Caribe.",
+    "imagenUrl": "assets/img/conga.jpg",
+    "videoUrl": "",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
+  },
+  {
+    "id": "d15",
+    "nombre": "Abozao",
+    "region": "Pacífico",
+    "descripcion": "Danza afro del Baudó; movimientos de cadera y tambor profundo.",
+    "origen": "Río Baudó (Chocó).",
+    "imagenUrl": "assets/img/abozao.jpg",
+    "videoUrl": "",
+    "fechaRegistro": "2025-09-01T00:00:00.000Z"
   }
 ]
