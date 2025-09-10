@@ -15,7 +15,6 @@
     .headline { font-family: Montserrat, Inter, sans-serif; }
     .line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
     .chip { @apply px-3 py-1.5 rounded-full border text-sm hover:bg-slate-100 cursor-pointer; }
-    
   </style>
 </head>
 <body class="bg-white">
@@ -91,95 +90,75 @@
   </section>
 
   <!-- Acerca -->
- <section id="acerca" class="bg-slate-50">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h2 class="headline text-3xl font-extrabold">Acerca del proyecto</h2>
-    <p class="mt-3 max-w-3xl">
-      DanzApp es un catálogo digital para difundir y preservar danzas tradicionales colombianas. 
-      Pensado para estudiantes, docentes e investigadores culturales.
-    </p>
+  <section id="acerca" class="bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="headline text-3xl font-extrabold">Acerca del proyecto</h2>
+      <p class="mt-3 max-w-3xl">
+        DanzApp es un catálogo digital para difundir y preservar danzas tradicionales colombianas. 
+        Pensado para estudiantes, docentes e investigadores culturales.
+      </p>
 
-    <section id="roles" class="bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h2 class="headline text-3xl font-extrabold">Roles del Proyecto</h2>
-    <p class="mt-3 max-w-3xl">
-      Dentro de DanzApp se han definido distintos roles de usuario, cada uno con funciones específicas que permiten 
-      organizar y garantizar el correcto funcionamiento del sistema.
-    </p>
+      <section id="roles" class="bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h2 class="headline text-3xl font-extrabold">Roles del Proyecto</h2>
+          <p class="mt-3 max-w-3xl">
+            Dentro de DanzApp se han definido distintos roles de usuario, cada uno con funciones específicas que permiten 
+            organizar y garantizar el correcto funcionamiento del sistema.
+          </p>
 
-    <div class="mt-8 grid md:grid-cols-3 gap-8">
+          <div class="mt-8 grid md:grid-cols-3 gap-8">
+            <div class="bg-slate-50 rounded-xl shadow p-6">
+              <h3 class="text-xl font-bold">Público en general</h3>
+              <p class="mt-2 text-sm text-slate-700">
+                Pueden explorar el catálogo, ver imágenes, leer descripciones y conocer el origen cultural de cada danza. No requieren autenticación.
+              </p>
+            </div>
 
-      <!-- Público en general -->
-      <div class="bg-slate-50 rounded-xl shadow p-6">
-        <h3 class="text-xl font-bold">Público en general</h3>
-        <p class="mt-2 text-sm text-slate-700">
-          Los usuarios que visitan la plataforma pueden explorar el catálogo de danzas, 
-          ver imágenes, leer descripciones y conocer el origen cultural de cada danza.
-          No requieren autenticación.
-        </p>
-      </div>
+            <div class="bg-slate-50 rounded-xl shadow p-6">
+              <h3 class="text-xl font-bold">Administrador</h3>
+              <p class="mt-2 text-sm text-slate-700">
+                Gestiona el sistema. Permisos para crear, actualizar y eliminar danzas, y organizar contenido multimedia. Mantiene la base cultural actualizada.
+              </p>
+            </div>
 
-      <!-- Administrador -->
-      <div class="bg-slate-50 rounded-xl shadow p-6">
-        <h3 class="text-xl font-bold">Administrador</h3>
-        <p class="mt-2 text-sm text-slate-700">
-          Encargado de gestionar el sistema. Tiene permisos para crear, actualizar y eliminar registros de danzas,
-          así como organizar el contenido multimedia (imágenes y videos). 
-          Es el responsable de mantener la base de datos cultural actualizada.
-        </p>
-      </div>
-
-      <!-- Rol adicional: Investigador Cultural -->
-      <div class="bg-slate-50 rounded-xl shadow p-6">
-        <h3 class="text-xl font-bold">Investigador Cultural (Rol adicional)</h3>
-        <p class="mt-2 text-sm text-slate-700">
-          Este rol fue elegido porque fortalece la veracidad y el valor del contenido. 
-          Su función es aportar investigaciones, referencias y documentación adicional 
-          que respalde la información de las danzas. 
-          Puede sugerir nuevas danzas y proponer correcciones, pero los cambios deben ser 
-          validados por un administrador.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-    <!-- Integrantes del grupo -->
-    <div class="mt-10">
-      <h3 class="text-2xl font-bold mb-6">Integrantes del equipo</h3>
-      <div class="grid md:grid-cols-3 gap-8">
-
-        <!-- Ellin -->
-        <div class="bg-white rounded-xl shadow p-6 text-center">
-          <img src="./assets/img/hero/Alejandro .jpg" alt="" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-          <h4 class="text-lg font-semibold">Ellin Alejandro Granja Torres</h4>
-          <p class="text-sm text-slate-600">Rol: Full Stack Developer</p>
-          <p class="mt-2 text-sm">Encargado del desarrollo completo de la aplicación, integración entre frontend y backend.</p>
+            <div class="bg-slate-50 rounded-xl shadow p-6">
+              <h3 class="text-xl font-bold">Investigador Cultural (rol adicional)</h3>
+              <p class="mt-2 text-sm text-slate-700">
+                Aporta investigaciones, referencias y documentación que respalda la información de las danzas. Sugiere nuevas danzas y correcciones (validadas por un admin).
+              </p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- Jhonatan -->
-        <div class="bg-white rounded-xl shadow p-6 text-center">
-          <img src="./assets/img/hero/Jhonatan.jpg" alt="" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-          <h4 class="text-lg font-semibold">Jhonatan Alexander Ocampo Angulo</h4>
-          <p class="text-sm text-slate-600">Rol: Frontend Developer</p>
-          <p class="mt-2 text-sm">Responsable del diseño de interfaces, experiencia de usuario y conexión con la API.</p>
+      <!-- Integrantes del grupo -->
+      <div class="mt-10">
+        <h3 class="text-2xl font-bold mb-6">Integrantes del equipo</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow p-6 text-center">
+            <img src="./assets/img/hero/Alejandro .jpg" alt="Foto de Ellin Alejandro Granja Torres" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+            <h4 class="text-lg font-semibold">Ellin Alejandro Granja Torres</h4>
+            <p class="text-sm text-slate-600">Rol: Full Stack Developer</p>
+            <p class="mt-2 text-sm">Encargado del desarrollo completo de la aplicación, integración entre frontend y backend.</p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow p-6 text-center">
+            <img src="./assets/img/hero/Jhonatan.jpg" alt="Foto de Jhonatan Alexander Ocampo Angulo" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+            <h4 class="text-lg font-semibold">Jhonatan Alexander Ocampo Angulo</h4>
+            <p class="text-sm text-slate-600">Rol: Frontend Developer</p>
+            <p class="mt-2 text-sm">Responsable del diseño de interfaces, experiencia de usuario y conexión con la API.</p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow p-6 text-center">
+            <img src="./assets/img/hero/yover.jpg" alt="Foto de Yover Cilo Preciado Castillo" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
+            <h4 class="text-lg font-semibold">Yover Cilo Preciado Castillo</h4>
+            <p class="text-sm text-slate-600">Rol: Backend Developer</p>
+            <p class="mt-2 text-sm">Encargado de la lógica del servidor, rutas CRUD y persistencia de datos.</p>
+          </div>
         </div>
-
-        <!-- Yover -->
-        <div class="bg-white rounded-xl shadow p-6 text-center">
-          <img src="./assets/img/hero/yover.jpg" alt="" class="w-32 h-32 mx-auto rounded-full object-cover mb-4">
-          <h4 class="text-lg font-semibold">Yover Cilo Preciado Castillo</h4>
-          <p class="text-sm text-slate-600">Rol: Backend Developer</p>
-          <p class="mt-2 text-sm">Encargado de la lógica del servidor, rutas CRUD y persistencia de datos.</p>
-        </div>
-
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <!-- Contacto -->
   <section id="contacto">
@@ -219,23 +198,39 @@
   </div>
 
   <script>
-    const API = "http://localhost:3000/api/danzas";
+    // ====== Catálogo semilla (con tus datos) ======
+    const SEED_DANZAS = [
+      {"id":"d1","nombre":"Mapalé","region":"Caribe","descripcion":"Ritmo enérgico con raíces africanas, de pasos rápidos y percusión intensa.","origen":"Costa Caribe; legado afrodescendiente en faenas de pesca.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrKE1RzGmEmZ9JikTjgvtJothiuBu0a0YzRw&s","videoUrl":"https://youtu.be/tWlb3lJIJW8?si=_WqlvK-oRy9urjdJ","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d2","nombre":"Currulao","region":"Pacífico","descripcion":"Danza emblemática del litoral Pacífico, marcada por marimba, cununos y guasá.","origen":"Comunidades afro del Pacífico colombiano.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcD7RLSl3wtMUqv5Nyle7Mg0TcrS5ZhjkmYA&s","videoUrl":"https://youtu.be/cpCpPIkdptA?si=8B1uBigAoj3aPEeS","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d3","nombre":"Cumbia","region":"Caribe","descripcion":"Símbolo musical y dancístico de Colombia; faldas amplias y velas en escena.","origen":"Mestizaje indígena, africano y español en la ribera del Magdalena.","imagenUrl":"https://cle.ens-lyon.fr/espagnol/images/6942165347-df116de7fc-o.jpg","videoUrl":"https://youtu.be/HN1PHJE1ZFE?si=ME0kjlaX1-zIx442","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d4","nombre":"Joropo","region":"Llanos","descripcion":"Zapateo y coleo al ritmo de arpa, cuatro y maracas; baile llanero por excelencia.","origen":"Llanos Orientales compartidos con Venezuela.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnC3LNg_H29RDpAlJ7jIwqv8jUUBE68SKFLw&s","videoUrl":"https://youtu.be/M-lnfsZtFs8?si=fzhj5bFkXbMQbdpo","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d5","nombre":"Bambuco","region":"Andina","descripcion":"Danza elegante de parejas, con pañuelo y giros; símbolo andino.","origen":"Cordillera andina; fuerte presencia en festivales folclóricos.","imagenUrl":"https://cdn.colombia.com/images/v2/turismo/ferias-y-fiestas/festival-folclorico-y-reinado-nacional-del-bambuco/reinado-nacional-bambuco-500.jpg","videoUrl":"https://youtu.be/D4ZqGwSyUlE?si=ZZjLKwfTVng48Y8o","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d6","nombre":"Sanjuanero","region":"Andina","descripcion":"Baile de fiesta tolimense, coreografiado con figuras tradicionales.","origen":"Fiestas de San Juan en el Tolima y Huila.","imagenUrl":"https://tolima.gov.co/images/noticias/2022/Febrero/San_Juanero.jpg","videoUrl":"https://youtu.be/RR5ElvH3TBI?si=AGzSvIdwus7JeRHw","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d7","nombre":"Porro","region":"Caribe","descripcion":"Aire bailable de banda y cumbiamba; alegre y festivo.","origen":"Sabanas de Sucre y Córdoba.","imagenUrl":"https://portalvallenato.net/wp-content/uploads/2018/12/porro_cumbia_vallenato.jpg?w=816","videoUrl":"https://www.youtube.com/watch?v=5g4c2zQyqOA","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d8","nombre":"Bullerengue","region":"Caribe","descripcion":"Canto-danza de tambor liderado por mujeres; patrimonial en Atlántico y Bolívar.","origen":"Comunidades afro e indígenas de la costa Caribe.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9jSwOZzXRJRdAG1RUjaGArAZEweT-Wd4rDg&s","videoUrl":"https://youtu.be/ZUwIghTAF1Y?si=jkaQaa6r7CZfqJc-","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d9","nombre":"Torbellino","region":"Andina","descripcion":"Baile campesino de compás ternario; parejas giran con pañuelos.","origen":"Boyacá, Cundinamarca y Santander.","imagenUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Baile_campesino%2C_Boyac%C3%A1.jpg/640px-Baile_campesino%2C_Boyac%C3%A1.jpg","videoUrl":"https://youtu.be/pj4euJHIQYI?si=0bdX7YzuitzjLPSp","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d10","nombre":"Chirimía","region":"Pacífico","descripcion":"Fiesta callejera con clarinetes y tambores; baile colectivo.","origen":"Litoral Pacífico (Nariño y Chocó).","imagenUrl":"https://i0.wp.com/www.lasillavacia.com/wp-content/uploads/2021/04/chirimia_valencia.png?fit=820%2C515&ssl=1","videoUrl":"https://youtu.be/2Gyl_F5OJl0?si=YTz2pgRUdVkUEr61","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d11","nombre":"Guaneña","region":"Andina","descripcion":"Aire nariñense de pasos ágiles y vestuario colorido.","origen":"Pasto y el altiplano nariñense.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYTj7Z6tMZsYzZzPsujtV4eLNCPJpok99OYA&s","videoUrl":"https://youtu.be/J2SeYdkFNJU?si=yW_xx2ILXz50ugh1","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d12","nombre":"Yuruparí","region":"Amazonía","descripcion":"Danza ritual asociada a mitos y ceremonias amazónicas.","origen":"Pueblos indígenas del Amazonas colombiano.","imagenUrl":"https://100libroslibres.com/contenidos-webp/41708.webp","videoUrl":"https://youtu.be/COkA25Nf_zs?si=1_OUz6uzjH1quQWe","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d13","nombre":"Garabato","region":"Caribe","descripcion":"Comparsa tradicional del Carnaval de Barranquilla con bastones y máscaras.","origen":"Barranquilla y su carnaval patrimonial.","imagenUrl":"https://www.viajes.cl/hubfs/28.%20Las%20propias%20Marimondas%20de%20Mabel%20Margarita%20Galezzo-%20%20Cr%C3%A9dito%2C%20Carnaval%20de%20Barranquilla%20S.A.jpg","videoUrl":"https://youtu.be/EpIAJQyyvdY?si=xeFOUfmzHO88qej-","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d14","nombre":"Conga (Carnaval)","region":"Caribe","descripcion":"Paso marcial y contagioso de comparsa; bombos y tambores guían la calle.","origen":"Carnaval de la Costa Caribe.","imagenUrl":"https://distintaslatitudes.net/storage/2021/03/IMG_20200224_143550-scaled.jpg","videoUrl":"https://youtu.be/X9q4nUVjE5o?si=m7vElp8pFH8DvBGv","fechaRegistro":"2025-09-01T00:00:00.000Z"},
+      {"id":"d15","nombre":"Abozao","region":"Pacífico","descripcion":"Danza afro del Baudó; movimientos de cadera y tambor profundo.","origen":"Río Baudó (Chocó).","imagenUrl":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXVozroVzDys3uDm-Y-MQKgdr_9N5H8G0pw7KGaeV4qCF2qQTdTHVaRT8JYZ_PbfV3ZyRFyebJVJoR0b5zWwfjzH9_6I_mrQFUbLFwD7ljzi9VQ2XTCkwep0DG5dzIZwfb30xV0XypcIhH/s1600/mapale.jpg","videoUrl":"https://youtu.be/__QrLaKSRmc?si=qQ6ziKY48ihFIrkO","fechaRegistro":"2025-09-01T00:00:00.000Z"}
+    ];
 
+    // ====== Estado y API ======
     const state = { danzas: [], filtroTexto: "", filtroRegion: "", filtroCat: "" };
+    const API = "/api/danzas"; // misma origin
 
+    // Carga: usa SEED y, si la API responde, lo reemplaza
     async function cargar() {
+      state.danzas = SEED_DANZAS;
       try {
-        const res = await fetch(API);
-        state.danzas = await res.json();
-      } catch {
-        // fallback de demo si el backend no está corriendo
-        state.danzas = [
-          { id:"1", nombre:"Currulao", region:"Pacífico", imagenUrl:"assets/img/currulao.jpg", descripcion:"Danza afro del Pacífico con marimba.", origen:"Herencia africana", videoUrl:"" },
-          { id:"2", nombre:"Mapalé", region:"Caribe", imagenUrl:"assets/img/mapale.jpg", descripcion:"Ritmo enérgico de la costa Caribe.", origen:"Raíces africanas", videoUrl:"" },
-          { id:"3", nombre:"Cumbia", region:"Caribe", imagenUrl:"assets/img/cumbia.jpg", descripcion:"Símbolo musical y dancístico de Colombia.", origen:"Mestizaje indígena, africano y español", videoUrl:"" },
-          { id:"4", nombre:"Joropo", region:"Llanos", imagenUrl:"assets/img/joropo.jpg", descripcion:"Zapateo y arpa llanera.", origen:"Tradición llanera", videoUrl:"" }
-        ];
-      }
+        const res = await fetch(API, { cache: "no-store" });
+        if (res.ok) {
+          const fromApi = await res.json();
+          if (Array.isArray(fromApi) && fromApi.length) state.danzas = fromApi;
+        }
+      } catch (_) { /* sin backend: seguimos con SEED */ }
       render();
     }
 
