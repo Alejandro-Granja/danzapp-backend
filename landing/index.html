@@ -197,99 +197,85 @@
     </article>
   </div>
 
-  <script>
-    // ====== Catálogo semilla (con tus datos) ======
-    const SEED_DANZAS = [
-      {"id":"d1","nombre":"Mapalé","region":"Caribe","descripcion":"Ritmo enérgico con raíces africanas, de pasos rápidos y percusión intensa.","origen":"Costa Caribe; legado afrodescendiente en faenas de pesca.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrKE1RzGmEmZ9JikTjgvtJothiuBu0a0YzRw&s","videoUrl":"https://youtu.be/tWlb3lJIJW8?si=_WqlvK-oRy9urjdJ","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d2","nombre":"Currulao","region":"Pacífico","descripcion":"Danza emblemática del litoral Pacífico, marcada por marimba, cununos y guasá.","origen":"Comunidades afro del Pacífico colombiano.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcD7RLSl3wtMUqv5Nyle7Mg0TcrS5ZhjkmYA&s","videoUrl":"https://youtu.be/cpCpPIkdptA?si=8B1uBigAoj3aPEeS","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d3","nombre":"Cumbia","region":"Caribe","descripcion":"Símbolo musical y dancístico de Colombia; faldas amplias y velas en escena.","origen":"Mestizaje indígena, africano y español en la ribera del Magdalena.","imagenUrl":"https://cle.ens-lyon.fr/espagnol/images/6942165347-df116de7fc-o.jpg","videoUrl":"https://youtu.be/HN1PHJE1ZFE?si=ME0kjlaX1-zIx442","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d4","nombre":"Joropo","region":"Llanos","descripcion":"Zapateo y coleo al ritmo de arpa, cuatro y maracas; baile llanero por excelencia.","origen":"Llanos Orientales compartidos con Venezuela.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnC3LNg_H29RDpAlJ7jIwqv8jUUBE68SKFLw&s","videoUrl":"https://youtu.be/M-lnfsZtFs8?si=fzhj5bFkXbMQbdpo","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d5","nombre":"Bambuco","region":"Andina","descripcion":"Danza elegante de parejas, con pañuelo y giros; símbolo andino.","origen":"Cordillera andina; fuerte presencia en festivales folclóricos.","imagenUrl":"https://cdn.colombia.com/images/v2/turismo/ferias-y-fiestas/festival-folclorico-y-reinado-nacional-del-bambuco/reinado-nacional-bambuco-500.jpg","videoUrl":"https://youtu.be/D4ZqGwSyUlE?si=ZZjLKwfTVng48Y8o","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d6","nombre":"Sanjuanero","region":"Andina","descripcion":"Baile de fiesta tolimense, coreografiado con figuras tradicionales.","origen":"Fiestas de San Juan en el Tolima y Huila.","imagenUrl":"https://tolima.gov.co/images/noticias/2022/Febrero/San_Juanero.jpg","videoUrl":"https://youtu.be/RR5ElvH3TBI?si=AGzSvIdwus7JeRHw","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d7","nombre":"Porro","region":"Caribe","descripcion":"Aire bailable de banda y cumbiamba; alegre y festivo.","origen":"Sabanas de Sucre y Córdoba.","imagenUrl":"https://portalvallenato.net/wp-content/uploads/2018/12/porro_cumbia_vallenato.jpg?w=816","videoUrl":"https://www.youtube.com/watch?v=5g4c2zQyqOA","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d8","nombre":"Bullerengue","region":"Caribe","descripcion":"Canto-danza de tambor liderado por mujeres; patrimonial en Atlántico y Bolívar.","origen":"Comunidades afro e indígenas de la costa Caribe.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS9jSwOZzXRJRdAG1RUjaGArAZEweT-Wd4rDg&s","videoUrl":"https://youtu.be/ZUwIghTAF1Y?si=jkaQaa6r7CZfqJc-","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d9","nombre":"Torbellino","region":"Andina","descripcion":"Baile campesino de compás ternario; parejas giran con pañuelos.","origen":"Boyacá, Cundinamarca y Santander.","imagenUrl":"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Baile_campesino%2C_Boyac%C3%A1.jpg/640px-Baile_campesino%2C_Boyac%C3%A1.jpg","videoUrl":"https://youtu.be/pj4euJHIQYI?si=0bdX7YzuitzjLPSp","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d10","nombre":"Chirimía","region":"Pacífico","descripcion":"Fiesta callejera con clarinetes y tambores; baile colectivo.","origen":"Litoral Pacífico (Nariño y Chocó).","imagenUrl":"https://i0.wp.com/www.lasillavacia.com/wp-content/uploads/2021/04/chirimia_valencia.png?fit=820%2C515&ssl=1","videoUrl":"https://youtu.be/2Gyl_F5OJl0?si=YTz2pgRUdVkUEr61","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d11","nombre":"Guaneña","region":"Andina","descripcion":"Aire nariñense de pasos ágiles y vestuario colorido.","origen":"Pasto y el altiplano nariñense.","imagenUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYTj7Z6tMZsYzZzPsujtV4eLNCPJpok99OYA&s","videoUrl":"https://youtu.be/J2SeYdkFNJU?si=yW_xx2ILXz50ugh1","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d12","nombre":"Yuruparí","region":"Amazonía","descripcion":"Danza ritual asociada a mitos y ceremonias amazónicas.","origen":"Pueblos indígenas del Amazonas colombiano.","imagenUrl":"https://100libroslibres.com/contenidos-webp/41708.webp","videoUrl":"https://youtu.be/COkA25Nf_zs?si=1_OUz6uzjH1quQWe","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d13","nombre":"Garabato","region":"Caribe","descripcion":"Comparsa tradicional del Carnaval de Barranquilla con bastones y máscaras.","origen":"Barranquilla y su carnaval patrimonial.","imagenUrl":"https://www.viajes.cl/hubfs/28.%20Las%20propias%20Marimondas%20de%20Mabel%20Margarita%20Galezzo-%20%20Cr%C3%A9dito%2C%20Carnaval%20de%20Barranquilla%20S.A.jpg","videoUrl":"https://youtu.be/EpIAJQyyvdY?si=xeFOUfmzHO88qej-","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d14","nombre":"Conga (Carnaval)","region":"Caribe","descripcion":"Paso marcial y contagioso de comparsa; bombos y tambores guían la calle.","origen":"Carnaval de la Costa Caribe.","imagenUrl":"https://distintaslatitudes.net/storage/2021/03/IMG_20200224_143550-scaled.jpg","videoUrl":"https://youtu.be/X9q4nUVjE5o?si=m7vElp8pFH8DvBGv","fechaRegistro":"2025-09-01T00:00:00.000Z"},
-      {"id":"d15","nombre":"Abozao","region":"Pacífico","descripcion":"Danza afro del Baudó; movimientos de cadera y tambor profundo.","origen":"Río Baudó (Chocó).","imagenUrl":"https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgXVozroVzDys3uDm-Y-MQKgdr_9N5H8G0pw7KGaeV4qCF2qQTdTHVaRT8JYZ_PbfV3ZyRFyebJVJoR0b5zWwfjzH9_6I_mrQFUbLFwD7ljzi9VQ2XTCkwep0DG5dzIZwfb30xV0XypcIhH/s1600/mapale.jpg","videoUrl":"https://youtu.be/__QrLaKSRmc?si=qQ6ziKY48ihFIrkO","fechaRegistro":"2025-09-01T00:00:00.000Z"}
-    ];
+<script>
+  // ====== Catálogo semilla (con tus datos) ======
+  const SEED_DANZAS = [ /* … tus danzas semilla … */ ];
 
-    // ====== Estado y API ======
-    const state = { danzas: [], filtroTexto: "", filtroRegion: "", filtroCat: "" };
-    const API = "/api/danzas"; // misma origin
+  // ====== Estado y API ======
+  const state = { danzas: [], filtroTexto: "", filtroRegion: "", filtroCat: "" };
+  const API = "http://localhost:4000/api/danzas"; // URL completa del backend
 
-    // Carga: usa SEED y, si la API responde, lo reemplaza
-    async function cargar() {
-      state.danzas = SEED_DANZAS;
-      try {
-        const res = await fetch(API, { cache: "no-store" });
-        if (res.ok) {
-          const fromApi = await res.json();
-          if (Array.isArray(fromApi) && fromApi.length) state.danzas = fromApi;
-        }
-      } catch (_) { /* sin backend: seguimos con SEED */ }
-      render();
-    }
+  // Carga: usa SEED y, si la API responde, lo reemplaza
+  async function cargar() {
+    state.danzas = SEED_DANZAS; // fallback
+    try {
+      const res = await fetch(API, { cache: "no-store" });
+      if (res.ok) {
+        const fromApi = await res.json();
+        if (Array.isArray(fromApi) && fromApi.length) state.danzas = fromApi;
+      }
+    } catch (_) { /* sin backend: seguimos con SEED */ }
+    render();
+  }
 
-    function aplicarFiltros(arr) {
-      return arr.filter(d => {
-        const txt = state.filtroTexto.trim().toLowerCase();
-        const okTxt = !txt || d.nombre.toLowerCase().includes(txt) || (d.descripcion||"").toLowerCase().includes(txt);
-        const okRegion = !state.filtroRegion || d.region === state.filtroRegion;
-        const okCat = !state.filtroCat || d.nombre.toLowerCase().includes(state.filtroCat.toLowerCase());
-        return okTxt && okRegion && okCat;
-      });
-    }
-
-    function render() {
-      const grid = document.getElementById("gridDanzas");
-      const items = aplicarFiltros(state.danzas);
-      grid.innerHTML = items.map(d => `
-        <article class="border rounded-xl overflow-hidden hover:shadow transition">
-          <img src="${d.imagenUrl || 'assets/img/placeholder.jpg'}" alt="${d.nombre}" class="w-full h-44 object-cover">
-          <div class="p-4">
-            <h3 class="text-lg font-semibold">${d.nombre}</h3>
-            <p class="text-sm text-slate-600">${d.region}</p>
-            <p class="mt-2 text-sm line-clamp-3">${d.descripcion || ""}</p>
-            <button class="mt-3 text-[var(--brand)] underline" onclick='ver(${JSON.stringify(d)})'>Ver más</button>
-          </div>
-        </article>
-      `).join("");
-    }
-
-    function ver(d) {
-      document.getElementById("m_img").src = d.imagenUrl || "assets/img/placeholder.jpg";
-      document.getElementById("m_titulo").textContent = d.nombre;
-      document.getElementById("m_region").textContent = d.region;
-      document.getElementById("m_desc").textContent = d.descripcion || "";
-      document.getElementById("m_origen").textContent = d.origen ? "Origen: " + d.origen : "";
-      const a = document.getElementById("m_video");
-      if (d.videoUrl) { a.href = d.videoUrl; a.classList.remove("pointer-events-none","opacity-50"); }
-      else { a.href = "#"; a.classList.add("pointer-events-none","opacity-50"); }
-      document.getElementById("modal").classList.remove("hidden");
-      document.getElementById("modal").classList.add("flex");
-    }
-    function cerrarModal() {
-      document.getElementById("modal").classList.add("hidden");
-      document.getElementById("modal").classList.remove("flex");
-    }
-
-    // Interacciones
-    document.getElementById("btnBuscar").addEventListener("click", () => {
-      state.filtroTexto = document.getElementById("q").value;
-      state.filtroRegion = document.getElementById("region").value;
-      render();
+  function aplicarFiltros(arr) {
+    return arr.filter(d => {
+      const txt = state.filtroTexto.trim().toLowerCase();
+      const okTxt = !txt || d.nombre.toLowerCase().includes(txt) || (d.descripcion||"").toLowerCase().includes(txt);
+      const okRegion = !state.filtroRegion || d.region === state.filtroRegion;
+      const okCat = !state.filtroCat || d.nombre.toLowerCase().includes(state.filtroCat.toLowerCase());
+      return okTxt && okRegion && okCat;
     });
-    document.querySelectorAll(".chip").forEach(ch => ch.addEventListener("click", () => {
-      state.filtroCat = ch.dataset.cat || "";
-      render();
-    }));
+  }
 
-    // Init
-    window.addEventListener("DOMContentLoaded", cargar);
-  </script>
+  function render() {
+    const grid = document.getElementById("gridDanzas");
+    const items = aplicarFiltros(state.danzas);
+    grid.innerHTML = items.map(d => `
+      <article class="border rounded-xl overflow-hidden hover:shadow transition">
+        <img src="${d.imagenUrl || d.imagen_url || 'assets/img/placeholder.jpg'}" alt="${d.nombre}" class="w-full h-44 object-cover">
+        <div class="p-4">
+          <h3 class="text-lg font-semibold">${d.nombre}</h3>
+          <p class="text-sm text-slate-600">${d.region}</p>
+          <p class="mt-2 text-sm line-clamp-3">${d.descripcion || ""}</p>
+          <button class="mt-3 text-[var(--brand)] underline" onclick='ver(${JSON.stringify(d)})'>Ver más</button>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  function ver(d) {
+    document.getElementById("m_img").src = d.imagenUrl || d.imagen_url || "assets/img/placeholder.jpg";
+    document.getElementById("m_titulo").textContent = d.nombre;
+    document.getElementById("m_region").textContent = d.region;
+    document.getElementById("m_desc").textContent = d.descripcion || "";
+    document.getElementById("m_origen").textContent = d.origen ? "Origen: " + d.origen : "";
+    const a = document.getElementById("m_video");
+    if (d.videoUrl || d.video_url) { a.href = d.videoUrl || d.video_url; a.classList.remove("pointer-events-none","opacity-50"); }
+    else { a.href = "#"; a.classList.add("pointer-events-none","opacity-50"); }
+    document.getElementById("modal").classList.remove("hidden");
+    document.getElementById("modal").classList.add("flex");
+  }
+
+  function cerrarModal() {
+    document.getElementById("modal").classList.add("hidden");
+    document.getElementById("modal").classList.remove("flex");
+  }
+
+  // Interacciones
+  document.getElementById("btnBuscar").addEventListener("click", () => {
+    state.filtroTexto = document.getElementById("q").value;
+    state.filtroRegion = document.getElementById("region").value;
+    render();
+  });
+  document.querySelectorAll(".chip").forEach(ch => ch.addEventListener("click", () => {
+    state.filtroCat = ch.dataset.cat || "";
+    render();
+  }));
+
+  // Init
+  window.addEventListener("DOMContentLoaded", cargar);
+</script>
+
 </body>
 </html>

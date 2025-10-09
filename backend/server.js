@@ -1,38 +1,39 @@
-import express from "express";
-import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
-import danzasRouter from "./routes/danzas.js";
+const express = require('express');
+require('dotenv').config();
+const cors = require('cors');
 
+const PORT = process.env.PORT || 4000;
 const app = express();
+
+// ========================
+// 🧰 Middlewares globales
+// ========================
 app.use(cors());
 app.use(express.json());
 
-// ====== Servir la landing desde / ======
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const PUBLIC_DIR = path.resolve(__dirname, "../landing");
+// ========================
+// 📌 Importar rutas
+// ========================
+const authRoutes = require('./routes/auth');                 // registro / login
+const regionsRoutes = require('./routes/regions');           // CRUD regiones culturales
+const danzasRoutes = require('./routes/danzas');             // CRUD danzas tradicionales
+const comentariosRoutes = require('./routes/comentarios');   // CRUD comentarios sobre danzas
+const calificacionesRoutes = require('./routes/calificaciones'); // Calificaciones de danzas
+const userRoutes = require('./routes/userRoutes');           // Gestión de usuarios (solo admin)
 
-// Archivos estáticos (index.html, login.html, register.html, etc.)
-app.use(express.static(PUBLIC_DIR));
+// ========================
+// 🚦 Registrar rutas
+// ========================
+app.use('/api/auth', authRoutes);
+app.use('/api/regions', regionsRoutes);
+app.use('/api/danzas', danzasRoutes);
+app.use('/api/comentarios', comentariosRoutes);
+app.use('/api/calificaciones', calificacionesRoutes);
+app.use('/api/usuarios', userRoutes);
 
-// Rutas API
-app.use("/api/danzas", danzasRouter);
-
-// (Opcional) rutas bonitas sin .html
-import fs from "fs";
-const page = (name) => (req, res) =>
-  res.sendFile(path.join(PUBLIC_DIR, `${name}.html`));
-["/login","/register","/catalogo","/admin"].forEach(r => {
-  app.get(r, page(r.slice(1)));
+// ========================
+// 🚀 Iniciar servidor
+// ========================
+app.listen(PORT, () => {
+  console.log(`✅ Servidor DanzApp iniciado en el puerto ${PORT}`);
 });
-
-// Home y ping
-app.get("/", (_, res) => res.sendFile(path.join(PUBLIC_DIR, "index.html")));
-app.get("/ping", (_, res) => res.json({ ok: true, api: "DanzApp v1" }));
-
-// Puerto
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () =>
-  console.log(`Listo 👉 http://localhost:${PORT}`)
-);
