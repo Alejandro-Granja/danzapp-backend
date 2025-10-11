@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// Lee la clave desde .env o usa una por defecto
+// Clave secreta para firmar el JWT
 const key_jwt = process.env.JWT_SECRET || '93!SFSCDDSodsfk923*ada';
 
 /**
@@ -35,12 +35,12 @@ const requireRole = (allowedRoles) => {
       req.nombre = nombre;
       req.rol = rol;
 
-      // Pasar al siguiente middleware/controlador
       next();
     } catch (error) {
       return res.status(403).json({ error: 'Token inválido o expirado' });
     }
   };
 };
+
 
 module.exports = requireRole;

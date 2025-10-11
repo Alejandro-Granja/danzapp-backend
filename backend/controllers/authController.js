@@ -1,92 +1,107 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const path = require('path');
-
+const pool = require('../config/database');
 require('dotenv').config();
 
+// 🔐 Clave secreta JWT
 const key_jwt = process.env.JWT_SECRET || '93!SFSCDDSodsfk923*ada';
-const DB_PATH = path.resolve(__dirname, '../data/users.json');
 
-const readUsers = () => JSON.parse(fs.readFileSync(DB_PATH, 'utf8'));
-const writeUsers = (data) => fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
-
-// POST /register
+/* ==========================================================================
+   📌 REGISTRO DE USUARIO
+   ========================================================================== */
 const register = async (req, res) => {
   try {
-    const { email, name, country, city, birthdate, password } = req.body;
-    if (!email || !name || !country || !city || !birthdate || !password) {
+    const { correo, nombre, pais, ciudad, fecha_nacimiento, contraseña } = req.body;
+
+    if (!correo || !nombre || !pais || !ciudad || !fecha_nacimiento || !contraseña) {
       return res.status(400).json({ error: 'Todos los campos son requeridos' });
     }
 
-    const users = readUsers();
-    if (users.find(u => u.email === email)) {
+    // Verificar si el correo ya existe
+    const existing = await pool.query('SELECT * FROM danzapp.Usuario WHERE correo = $1', [correo]);
+    if (existing.rows.length > 0) {
       return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = {
-      id: Date.now().toString(), // o uuid
-      email,
-      name,
-      country,
-      city,
-      birthdate,
-      password: hashedPassword,
-      role: 'critic'
-    };
+    // Encriptar contraseña
+    const hashedPassword = await bcrypt.hash(contraseña, 10);
 
-    users.push(newUser);
-    writeUsers(users);
-
-    const token = jwt.sign(
-      { userId: newUser.id, email, name, role: newUser.role },
-      key_jwt,
-      { expiresIn: '1h' }
+    // Insertar usuario (rol por defecto: 'publico', o 'admin' si es el primero)
+    const result = await pool.query(
+      `INSERT INTO danzapp.Usuario (nombre, correo, contraseña, rol, pais, ciudad, fecha_nacimiento)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
+       RETURNING usuario_id, nombre, correo, rol`,
+      [nombre, correo, hashedPassword, 'admin', pais, ciudad, fecha_nacimiento]
     );
 
-    res.status(201).json({ token });
+    const user = result.rows[0];
+
+    // Crear token JWT
+    const token = jwt.sign(
+      {
+        userId: user.usuario_id,
+        correo: user.correo,
+        nombre: user.nombre,
+        rol: user.rol
+      },
+      key_jwt,
+      { expiresIn: '1d' }
+    );
+
+    res.status(201).json({ token, mensaje: 'Usuario registrado exitosamente' });
   } catch (error) {
-    console.error('Error en registro:', error);
+    console.error('❌ Error en registro:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-// POST /login
+/* ==========================================================================
+   📌 LOGIN DE USUARIO
+   ========================================================================== */
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { correo, contraseña } = req.body;
 
-    if (!email || !password) {
+    if (!correo || !contraseña) {
       return res.status(400).json({ error: 'Credenciales requeridas' });
     }
 
-    const users = readUsers();
-    const user = users.find(u => u.email === email);
-    if (!user) {
+    // Buscar usuario
+    const result = await pool.query('SELECT * FROM danzapp.Usuario WHERE correo = $1', [correo]);
+    if (result.rows.length === 0) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
-    const isValidPassword = await bcrypt.compare(password, user.password);
+    const user = result.rows[0];
+
+    // Validar contraseña
+    const isValidPassword = await bcrypt.compare(contraseña, user.contraseña);
     if (!isValidPassword) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
+    // Generar token JWT
     const token = jwt.sign(
-      { userId: user.id, email: user.email, name: user.name, role: user.role },
+      {
+        userId: user.usuario_id,
+        correo: user.correo,
+        nombre: user.nombre,
+        rol: user.rol
+      },
       key_jwt,
       { expiresIn: '1h' }
     );
 
-    res.json({ token });
-
+    res.json({ token, mensaje: 'Inicio de sesión exitoso' });
   } catch (error) {
-    console.error('Error en login:', error);
+    console.error('❌ Error en login:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-// PUT /users/:id/password (usuario cambia su password)
+/* ==========================================================================
+   📌 CAMBIO DE CONTRASEÑA
+   ========================================================================== */
 const changePassword = async (req, res) => {
   const { id } = req.params;
   const { oldPassword, newPassword } = req.body;
@@ -96,65 +111,62 @@ const changePassword = async (req, res) => {
   }
 
   const authHeader = req.header('Authorization');
-  const token = authHeader && authHeader.split(' ')[1];  // Formato: Bearer <token>
+  const token = authHeader && authHeader.split(' ')[1];
   if (!token) {
-    return res.status(403).json({ error: 'Acceso denegado' });
+    return res.status(403).json({ error: 'Acceso denegado. Token no proporcionado' });
   }
 
   try {
-    const { userId } = jwt.verify(token, key_jwt);
-    if (userId != id) {
+    const decoded = jwt.verify(token, key_jwt);
+    if (decoded.userId != id) {
       return res.status(403).json({ error: 'Acceso no autorizado' });
     }
-  } catch (error) {
-    return res.status(403).json({ error: 'Token inválido' });
-  }
 
-  try {
-    const users = readUsers();
-    const idx = users.findIndex(u => u.id === id);
-    if (idx === -1) return res.status(404).json({ error: 'Usuario no encontrado' });
+    // Buscar usuario
+    const result = await pool.query('SELECT * FROM danzapp.Usuario WHERE usuario_id = $1', [id]);
+    if (result.rows.length === 0) return res.status(404).json({ error: 'Usuario no encontrado' });
 
-    const user = users[idx];
-    const isValidPassword = await bcrypt.compare(oldPassword, user.password);
+    const user = result.rows[0];
+    const isValidPassword = await bcrypt.compare(oldPassword, user.contraseña);
     if (!isValidPassword) {
-      return res.status(401).json({ error: 'Credenciales inválidas' });
+      return res.status(401).json({ error: 'Contraseña actual incorrecta' });
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    users[idx].password = hashedPassword;
-    writeUsers(users);
+    await pool.query('UPDATE danzapp.Usuario SET contraseña = $1 WHERE usuario_id = $2', [hashedPassword, id]);
 
-    res.json({ message: 'Usuario actualizado exitosamente' });
+    res.json({ mensaje: 'Contraseña actualizada exitosamente' });
   } catch (error) {
-    console.error('Error en cambio de password:', error);
+    console.error('❌ Error en cambio de contraseña:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-// PUT /users/:id/force-password (admin fuerza cambio)
+/* ==========================================================================
+   📌 CAMBIO FORZADO DE CONTRASEÑA (ADMIN)
+   ========================================================================== */
 const forceChangePassword = async (req, res) => {
   try {
     const { id } = req.params;
     const { newPassword } = req.body;
 
     if (!newPassword) {
-      return res.status(400).json({ error: 'Todos los campos son requeridos' });
+      return res.status(400).json({ error: 'La nueva contraseña es requerida' });
     }
 
-    const users = readUsers();
-    const idx = users.findIndex(u => u.id === id);
-    if (idx === -1) return res.status(404).json({ error: 'Usuario no encontrado' });
-
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    users[idx].password = hashedPassword;
-    writeUsers(users);
+    await pool.query('UPDATE danzapp.Usuario SET contraseña = $1 WHERE usuario_id = $2', [hashedPassword, id]);
 
-    res.json({ message: 'Usuario actualizado exitosamente' });
+    res.json({ mensaje: 'Contraseña actualizada exitosamente por admin' });
   } catch (error) {
-    console.error('Error en cambio de password forzado:', error);
+    console.error('❌ Error en cambio de password forzado:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-module.exports = { register, login, changePassword, forceChangePassword };
+module.exports = {
+  register,
+  login,
+  changePassword,
+  forceChangePassword
+};

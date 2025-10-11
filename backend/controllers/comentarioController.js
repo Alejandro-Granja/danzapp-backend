@@ -1,12 +1,16 @@
+// ✅ controllers/comentarioController.js
 const pool = require('../config/database');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const key_jwt = process.env.JWT_SECRET || '93!SFSCDDSodsfk923*ada';
 
 // 📌 Obtener comentarios para una danza específica
 const getComentariosByDanza = async (req, res) => {
   try {
     const { danza_id } = req.params;
-
     const comentarios = await pool.query(`
-      SELECT c.comentario_id, c.usuario_id, u.nombre AS usuario_nombre, u.correo AS usuario_correo, 
+      SELECT c.comentario_id, c.usuario_id, u.nombre AS usuario_nombre, u.correo AS usuario_correo,
              c.comentario_texto, c.creado_en
       FROM danzapp.Comentario c
       JOIN danzapp.Usuario u ON c.usuario_id = u.usuario_id
@@ -25,18 +29,33 @@ const getComentariosByDanza = async (req, res) => {
   }
 };
 
-// 📌 Crear un comentario para una danza
+// 📌 Crear un comentario
 const createComentario = async (req, res) => {
   const { danza_id } = req.params;
   const { comentario } = req.body;
-  const usuario_id = req.userId; // se obtiene desde el middleware de autenticación JWT
+  let usuario_id = req.userId;
 
   try {
+    // ✅ Si el middleware no cargó el userId, lo tomamos del token manualmente
+    if (!usuario_id) {
+      const authHeader = req.header('Authorization');
+      const token = authHeader && authHeader.split(' ')[1];
+      if (!token) {
+        return res.status(403).json({ error: 'Acceso denegado. Token no proporcionado' });
+      }
+      try {
+        const decoded = jwt.verify(token, key_jwt);
+        usuario_id = decoded.userId; // 👈 Asegura que se use el ID del token
+      } catch (err) {
+        return res.status(403).json({ error: 'Token inválido o expirado' });
+      }
+    }
+
     if (!comentario) {
       return res.status(400).json({ error: 'El comentario es obligatorio' });
     }
 
-    // ✅ Verificar que el usuario exista y esté autenticado
+    // ✅ Validar usuario
     const userResult = await pool.query(
       'SELECT usuario_id FROM danzapp.Usuario WHERE usuario_id = $1',
       [usuario_id]
@@ -45,7 +64,7 @@ const createComentario = async (req, res) => {
       return res.status(403).json({ error: 'Usuario no válido' });
     }
 
-    // ✅ Verificar que la danza exista
+    // ✅ Validar danza
     const danzaResult = await pool.query(
       'SELECT danza_id FROM danzapp.Danza WHERE danza_id = $1',
       [danza_id]

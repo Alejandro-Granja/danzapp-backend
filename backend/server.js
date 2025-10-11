@@ -14,6 +14,11 @@ app.use(express.json());
 // ========================
 // 📌 Importar rutas
 // ========================
+
+
+const usersRoutes = require('./routes/userRoutes');
+app.use('/api/users', usersRoutes);
+
 const authRoutes = require('./routes/auth');                 // registro / login
 const regionsRoutes = require('./routes/regions');           // CRUD regiones culturales
 const danzasRoutes = require('./routes/danzas');             // CRUD danzas tradicionales
