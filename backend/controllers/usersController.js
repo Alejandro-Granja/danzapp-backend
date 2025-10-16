@@ -1,6 +1,6 @@
 const pool = require('../config/database');
 
-// ✅ Obtener todos los usuarios
+//  Obtener todos los usuarios
 const getUsers = async (req, res) => {
   try {
     const result = await pool.query(`
@@ -15,12 +15,12 @@ const getUsers = async (req, res) => {
 
     res.json(result.rows);
   } catch (error) {
-    console.error('❌ Error al obtener los usuarios:', error);
+    console.error(' Error al obtener los usuarios:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-// ✅ Obtener un usuario por ID
+//  Obtener un usuario por ID
 const getUserById = async (req, res) => {
   const { id } = req.params;
   try {
@@ -36,12 +36,12 @@ const getUserById = async (req, res) => {
 
     res.json(result.rows[0]);
   } catch (error) {
-    console.error('❌ Error al obtener el usuario:', error);
+    console.error(' Error al obtener el usuario:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-// ✅ Actualizar datos de un usuario
+//  Actualizar datos de un usuario
 const updateUser = async (req, res) => {
   const { id } = req.params;
   const { nombre, correo, rol, pais, ciudad, fecha_nacimiento } = req.body;
@@ -63,14 +63,14 @@ const updateUser = async (req, res) => {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    res.json({ mensaje: '✅ Usuario actualizado exitosamente', usuario: result.rows[0] });
+    res.json({ mensaje: ' Usuario actualizado exitosamente', usuario: result.rows[0] });
   } catch (error) {
-    console.error('❌ Error al actualizar el usuario:', error);
+    console.error(' Error al actualizar el usuario:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
-// ✅ Eliminar un usuario
+//  Eliminar un usuario
 const deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
@@ -83,9 +83,9 @@ const deleteUser = async (req, res) => {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    res.json({ mensaje: '🗑️ Usuario eliminado exitosamente' });
+    res.json({ mensaje: ' Usuario eliminado exitosamente' });
   } catch (error) {
-    console.error('❌ Error al eliminar el usuario:', error);
+    console.error(' Error al eliminar el usuario:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

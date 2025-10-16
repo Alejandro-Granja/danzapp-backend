@@ -1,7 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
- 
-// Configuración de la conexión a la base de datos
+
 const pool = new Pool({
     host: process.env.DB_HOST || 'wr-5pr.h.filess.io',
     database: process.env.DB_DATABASE || 'danzapp_bodydepth',

@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { getComentariosByDanza, createComentario } = require('../controllers/comentarioController');
+const { 
+  getComentariosByDanza, 
+  createComentario,
+  deleteComentario   
+} = require('../controllers/comentarioController');
 const requireRole = require('../middlewares/authMiddleware');
 
-// 📌 Obtener comentarios de una danza
 router.get('/danza/:danza_id', getComentariosByDanza);
-
-// 📌 Crear un comentario
 router.post('/danza/:danza_id', requireRole(['publico', 'investigador', 'admin']), createComentario);
+router.delete('/:comentario_id', requireRole(['admin']), deleteComentario); 
 
 module.exports = router;

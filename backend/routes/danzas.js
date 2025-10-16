@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const danzaController = require('../controllers/danzasController'); // nombre igual al archivo
+const danzaController = require('../controllers/danzasController'); 
 
 router.get('/', danzaController.getAllDanzas);
 router.get('/:id', danzaController.getDanzaById);

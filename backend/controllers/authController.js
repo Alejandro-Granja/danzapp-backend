@@ -3,12 +3,10 @@ const jwt = require('jsonwebtoken');
 const pool = require('../config/database');
 require('dotenv').config();
 
-// 🔐 Clave secreta JWT
+
 const key_jwt = process.env.JWT_SECRET || '93!SFSCDDSodsfk923*ada';
 
-/* ==========================================================================
-   📌 REGISTRO DE USUARIO
-   ========================================================================== */
+
 const register = async (req, res) => {
   try {
     const { correo, nombre, pais, ciudad, fecha_nacimiento, contraseña } = req.body;
@@ -23,10 +21,8 @@ const register = async (req, res) => {
       return res.status(400).json({ error: 'El correo electrónico ya está registrado' });
     }
 
-    // Encriptar contraseña
     const hashedPassword = await bcrypt.hash(contraseña, 10);
 
-    // Insertar usuario (rol por defecto: 'publico', o 'admin' si es el primero)
     const result = await pool.query(
       `INSERT INTO danzapp.Usuario (nombre, correo, contraseña, rol, pais, ciudad, fecha_nacimiento)
        VALUES ($1, $2, $3, $4, $5, $6, $7)
@@ -36,7 +32,6 @@ const register = async (req, res) => {
 
     const user = result.rows[0];
 
-    // Crear token JWT
     const token = jwt.sign(
       {
         userId: user.usuario_id,
@@ -55,9 +50,6 @@ const register = async (req, res) => {
   }
 };
 
-/* ==========================================================================
-   📌 LOGIN DE USUARIO
-   ========================================================================== */
 const login = async (req, res) => {
   try {
     const { correo, contraseña } = req.body;
@@ -66,7 +58,7 @@ const login = async (req, res) => {
       return res.status(400).json({ error: 'Credenciales requeridas' });
     }
 
-    // Buscar usuario
+  
     const result = await pool.query('SELECT * FROM danzapp.Usuario WHERE correo = $1', [correo]);
     if (result.rows.length === 0) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
@@ -74,13 +66,11 @@ const login = async (req, res) => {
 
     const user = result.rows[0];
 
-    // Validar contraseña
     const isValidPassword = await bcrypt.compare(contraseña, user.contraseña);
     if (!isValidPassword) {
       return res.status(401).json({ error: 'Credenciales inválidas' });
     }
 
-    // Generar token JWT
     const token = jwt.sign(
       {
         userId: user.usuario_id,
@@ -89,7 +79,7 @@ const login = async (req, res) => {
         rol: user.rol
       },
       key_jwt,
-      { expiresIn: '1h' }
+      { expiresIn: '1d' }
     );
 
     res.json({ token, mensaje: 'Inicio de sesión exitoso' });
@@ -99,9 +89,6 @@ const login = async (req, res) => {
   }
 };
 
-/* ==========================================================================
-   📌 CAMBIO DE CONTRASEÑA
-   ========================================================================== */
 const changePassword = async (req, res) => {
   const { id } = req.params;
   const { oldPassword, newPassword } = req.body;
@@ -122,7 +109,7 @@ const changePassword = async (req, res) => {
       return res.status(403).json({ error: 'Acceso no autorizado' });
     }
 
-    // Buscar usuario
+    
     const result = await pool.query('SELECT * FROM danzapp.Usuario WHERE usuario_id = $1', [id]);
     if (result.rows.length === 0) return res.status(404).json({ error: 'Usuario no encontrado' });
 
@@ -142,9 +129,6 @@ const changePassword = async (req, res) => {
   }
 };
 
-/* ==========================================================================
-   📌 CAMBIO FORZADO DE CONTRASEÑA (ADMIN)
-   ========================================================================== */
 const forceChangePassword = async (req, res) => {
   try {
     const { id } = req.params;
@@ -159,7 +143,7 @@ const forceChangePassword = async (req, res) => {
 
     res.json({ mensaje: 'Contraseña actualizada exitosamente por admin' });
   } catch (error) {
-    console.error('❌ Error en cambio de password forzado:', error);
+    console.error(' Error en cambio de password forzado:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

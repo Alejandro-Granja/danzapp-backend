@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { createRating, getRatingByIdDanza } = require('../controllers/calificacionController');
+const {
+  getRatingByIdDanza,
+  getRatingById,
+  createRating,
+  updateRating,
+  deleteRating
+} = require('../controllers/calificacionController');
 const requireRole = require('../middlewares/authMiddleware');
 
-// 📌 Obtener calificaciones de una danza
 router.get('/danza/:danza_id', getRatingByIdDanza);
-
-// 📌 Crear calificación para una danza (usuario autenticado: público, investigador o admin)
+router.get('/:calificacion_id', getRatingById);
 router.post('/danza/:danza_id', requireRole(['publico', 'investigador', 'admin']), createRating);
+router.put('/:calificacion_id', requireRole(['publico', 'investigador', 'admin']), updateRating);
+router.delete('/:calificacion_id', requireRole(['publico', 'investigador', 'admin']), deleteRating);
 
 module.exports = router;
